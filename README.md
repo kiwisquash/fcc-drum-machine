@@ -12,3 +12,8 @@
 
 # Tools
 - React.js
+
+# Drum machine sounds
+- The URL of the mp3 files for the different drum machine sounds are listed here:
+	- [https://www.freecodecamp.org/forum/t/drum-machine-sound-urls/231516](https://www.freecodecamp.org/forum/t/drum-machine-sound-urls/231516)
+- Before I can get started, I need to figure out how to play sounds!
