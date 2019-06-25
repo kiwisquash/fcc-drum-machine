@@ -17,3 +17,8 @@
 - The URL of the mp3 files for the different drum machine sounds are listed here:
 	- [https://www.freecodecamp.org/forum/t/drum-machine-sound-urls/231516](https://www.freecodecamp.org/forum/t/drum-machine-sound-urls/231516)
 - Before I can get started, I need to figure out how to play sounds!
+
+# How to get audio to play
+
+- Look into the `<audio>` tag, as welll as the `load()` and `play()` methods 
+- [play and pause buttons](https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_av_met_play_pause)
