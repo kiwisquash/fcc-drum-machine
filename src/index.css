@@ -4,26 +4,29 @@ body {
 }
 
 #drum-machine {
-	width: 100vw;
-	height: 500px;
-	max-width: 500px;
-	background-color: gray;
+	width: 95vw;
+	max-width: 400px;
+	height: 100vh;
 	margin: auto;
 	display: flex;
 	flex-direction: column;
 }
 
 .filler {
-	height: 25%;
+	height: 100%;
 }
 
 #display {
+	width: 100%;
+	padding-top: 25%;
+	padding-bottom: 25%;
+	background-color: gray;
 	margin: auto;
-	width: 50%;
-	height: 50%;
 	display: grid;
-	grid-template-columns: repeat(3, auto);
-	grid-template-rows: repeat(3, auto);
+	grid-template-columns: repeat(3, 77px);
+	grid-template-rows: repeat(3, 75px);
+	justify-content: center;
+	align-items: center;
 }
 
 
