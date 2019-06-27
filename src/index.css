@@ -22,20 +22,27 @@ body {
 	width: 50%;
 	height: 50%;
 	display: grid;
-	grid-template-columns: repeat(3, 25%);
-	grid-template-rows: repeat(3, 25%);
-	grid-gap: 10px;
+	grid-template-columns: repeat(3, auto);
+	grid-template-rows: repeat(3, auto);
 }
 
 
 .drum-pad {
-	width: 75%;
+	width: 65px;
+	height: 65px;
 	color: white;
 	background-color: black;
-	border-radius: 3px;
+	border-radius: 15px;
+	box-shadow: .5px .5px .5px .5px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: .1s;
+}
+
+.drum-pad:active {
+	transform: scale(.95);
+	box-shadow: 0px 0px;
 }
 
 .row1 {
