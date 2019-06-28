@@ -2,28 +2,58 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+const audioList = [
+	{ key: "Q", src: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"},
+	{ key: "W", src: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3" },
+	{ key: "E", src: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3" },
+	{ key: "A", src: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3" },
+	{ key: "S", src: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3" },
+	{ key: "D", src: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3" },
+	{ key: "Z", src: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3" },
+	{ key: "X", src: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3" },
+	{ key: "C", src: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3" }
+	// { src: "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3" },
+	// { src: "https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3" },
+	// { src: "https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3" },
+	// { src: "https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3" },
+	// { src: "https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3" },
+	// { src: "https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3" },
+	// { src: "https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3" },
+	// { src: "https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3" },
+	// { src: "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3" }
+]
+
+for (let clip of audioList) {
+	clip.name = clip.src.match(/([\w_-\d]+)\.mp3$/)[1]; 
+}
+
 const Clip = (props) => {
-	return (<audio className="clip" src={props.src} id={props.id} />);
+	return (<audio className="clip" src={props.audioObj.src} id={props.innertext} />);
 }
 
 const Pad = (props) => {
-	return (<div className={"drum-pad "+ props.row}>
+	return (<div id={props.audioObj.name} className={"drum-pad "+ props.row} onClick={()=>alert(props.audioObj.name)}>
 		<div>{props.innertext}</div>
-		<Clip src={props.src} id={props.innertext}/>	
+		<Clip audioObj={props.audioObj}  innertext={props.innertext}/>	
 	</div>);
 }
 
 const Display = (props) => {
+	
+	const renderPad = (innertext, pos) => {
+		return <Pad row={"row" + Math.floor(1+pos/3)} audioObj={audioList[pos]} innertext={innertext}/>;
+	}
+
 	return (<div id="display">
-		<Pad row="row1" src="temp" innertext="Q"/>
-		<Pad row="row1" src="temp" innertext="W"/>
-		<Pad row="row1" src="temp" innertext="E"/>
-		<Pad row="row2" src="temp" innertext="A"/>
-		<Pad row="row2" src="temp" innertext="S"/>
-		<Pad row="row2" src="temp" innertext="D"/>
-		<Pad row="row3" src="temp" innertext="Z"/>
-		<Pad row="row3" src="temp" innertext="X"/>
-		<Pad row="row3" src="temp" innertext="C"/>
+		{renderPad("Q",0)}
+		{renderPad("W",1)}
+		{renderPad("E",2)}
+		{renderPad("A",3)}
+		{renderPad("S",4)}
+		{renderPad("D",5)}
+		{renderPad("Z",6)}
+		{renderPad("X",7)}
+		{renderPad("C",8)}
 	</div>);
 }
 
