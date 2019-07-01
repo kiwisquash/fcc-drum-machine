@@ -32,29 +32,38 @@ const Clip = (props) => {
 }
 
 const Pad = (props) => {
-	return (<div id={props.audioObj.name} className={"drum-pad "+ props.row} onClick={()=>alert(props.audioObj.name)}>
+	return (<div id={props.audioObj.name} className={"drum-pad "+ props.row} onClick={()=>props.handleClick(props.innertext)}>
 		<div>{props.innertext}</div>
 		<Clip audioObj={props.audioObj}  innertext={props.innertext}/>	
 	</div>);
 }
 
-const Display = (props) => {
+class Display extends React.Component {
+
+
+	handleClick(elem_id) {
+		document.getElementById(elem_id).play();
+	}
 	
-	const renderPad = (innertext, pos) => {
-		return <Pad row={"row" + Math.floor(1+pos/3)} audioObj={audioList[pos]} innertext={innertext}/>;
+	renderPad(innertext, pos) {
+		return <Pad row={"row" + Math.floor(1+pos/3)} audioObj={audioList[pos]} innertext={innertext} handleClick={(elem_id)=>this.handleClick(elem_id)}/> ;
 	}
 
-	return (<div id="display">
-		{renderPad("Q",0)}
-		{renderPad("W",1)}
-		{renderPad("E",2)}
-		{renderPad("A",3)}
-		{renderPad("S",4)}
-		{renderPad("D",5)}
-		{renderPad("Z",6)}
-		{renderPad("X",7)}
-		{renderPad("C",8)}
-	</div>);
+	render() {
+		return (
+			<div id="display">
+				{this.renderPad("Q",0)}
+				{this.renderPad("W",1)}
+				{this.renderPad("E",2)}
+				{this.renderPad("A",3)}
+				{this.renderPad("S",4)}
+				{this.renderPad("D",5)}
+				{this.renderPad("Z",6)}
+				{this.renderPad("X",7)}
+				{this.renderPad("C",8)}
+			</div>
+		);
+	}
 }
 
 ReactDOM.render(
