@@ -23,6 +23,10 @@ const audioList = [
 	// { src: "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3" }
 ]
 
+const validKeys = [
+	"Q", "W", "E", "A", "S", "D", "Z", "X", "C"
+];
+
 for (let clip of audioList) {
 	clip.name = clip.src.match(/([\w_-\d]+)\.mp3$/)[1]; 
 }
@@ -39,14 +43,38 @@ const Pad = (props) => {
 }
 
 class Display extends React.Component {
+	
+	constructor(props) {
+		super(props);
+		this.onKeyPress = this.onKeyPress.bind(this)
+	}
 
 	playSound(elem_id) {
 		document.getElementById(elem_id).play();
 	}
 
+	onKeyPress(e) {
+		let pressed = String.fromCharCode(e.keyCode);
+		if (validKeys.includes(pressed)) { 
+			this.playSound(pressed);
+		} else {
+			console.log(pressed + " is not a valid key.");
+		}
+	}
+
+	componentDidMount() {
+		document.addEventListener("keydown", this.onKeyPress);
+	}
+	
+	componentWillUnmount() {
+		document.removeEventListener("keydown", this.onKeyPress);
+	}
+
 	handleClick(elem_id) {
 		this.playSound(elem_id);	
+		// console.log("I clicked on " + elem_id);
 	}
+
 	
 	renderPad(innertext, pos) {
 		return <Pad row={"row" + Math.floor(1+pos/3)}
