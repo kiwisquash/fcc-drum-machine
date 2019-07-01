@@ -40,18 +40,24 @@ const Pad = (props) => {
 
 class Display extends React.Component {
 
+	playSound(elem_id) {
+		document.getElementById(elem_id).play();
+	}
 
 	handleClick(elem_id) {
-		document.getElementById(elem_id).play();
+		this.playSound(elem_id);	
 	}
 	
 	renderPad(innertext, pos) {
-		return <Pad row={"row" + Math.floor(1+pos/3)} audioObj={audioList[pos]} innertext={innertext} handleClick={(elem_id)=>this.handleClick(elem_id)}/> ;
+		return <Pad row={"row" + Math.floor(1+pos/3)}
+		audioObj={audioList[pos]}
+		innertext={innertext}
+		handleClick={(elem_id)=>this.handleClick(elem_id)} />;
 	}
 
 	render() {
 		return (
-			<div id="display">
+			<div id="display" >
 				{this.renderPad("Q",0)}
 				{this.renderPad("W",1)}
 				{this.renderPad("E",2)}
@@ -66,6 +72,7 @@ class Display extends React.Component {
 	}
 }
 
+
 ReactDOM.render(
 	<div id="drum-machine">
 		<div className="filler"/>
@@ -73,3 +80,5 @@ ReactDOM.render(
 		<div className="filler"/>
 	</div>, document.getElementById('root')
 );
+
+
