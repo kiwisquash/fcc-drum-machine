@@ -42,11 +42,39 @@ const Pad = (props) => {
 	</div>);
 }
 
-class Display extends React.Component {
+class Pads extends React.Component {
+	
+	renderPad(innertext, pos) {
+		return <Pad row={"row" + Math.floor(1+pos/3)}
+		audioObj={audioList[pos]}
+		innertext={innertext}
+		handleClick={(elem_id) => this.props.handleClick(elem_id)} />;
+	}
+
+	render() {
+		return (
+			<div id="drum-pads" >
+				{this.renderPad("Q",0)}
+				{this.renderPad("W",1)}
+				{this.renderPad("E",2)}
+				{this.renderPad("A",3)}
+				{this.renderPad("S",4)}
+				{this.renderPad("D",5)}
+				{this.renderPad("Z",6)}
+				{this.renderPad("X",7)}
+				{this.renderPad("C",8)}
+			</div>
+		);
+	}
+}
+
+class DrumMachine extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.onKeyPress = this.onKeyPress.bind(this)
+		this.state = {
+			lastClip: ""
+		};
 	}
 
 	playSound(elem_id) {
@@ -74,39 +102,16 @@ class Display extends React.Component {
 		this.playSound(elem_id);	
 		// console.log("I clicked on " + elem_id);
 	}
-
-	
-	renderPad(innertext, pos) {
-		return <Pad row={"row" + Math.floor(1+pos/3)}
-		audioObj={audioList[pos]}
-		innertext={innertext}
-		handleClick={(elem_id)=>this.handleClick(elem_id)} />;
-	}
-
-	render() {
+render() {
 		return (
-			<div id="display" >
-				{this.renderPad("Q",0)}
-				{this.renderPad("W",1)}
-				{this.renderPad("E",2)}
-				{this.renderPad("A",3)}
-				{this.renderPad("S",4)}
-				{this.renderPad("D",5)}
-				{this.renderPad("Z",6)}
-				{this.renderPad("X",7)}
-				{this.renderPad("C",8)}
+			<div id="drum-machine">
+				<Pads handleClick={(elem_id)=>this.handleClick(elem_id)}/>
 			</div>
 		);
 	}
 }
-
-
 ReactDOM.render(
-	<div id="drum-machine">
-		<div className="filler"/>
-		<Display/>
-		<div className="filler"/>
-	</div>, document.getElementById('root')
+	<DrumMachine />, document.getElementById('root')
 );
 
 
