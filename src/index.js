@@ -68,26 +68,32 @@ class Pads extends React.Component {
 	}
 }
 
+const Display = (props) => (
+	<div id="display">
+		{props.clipName}
+	</div>
+)
+
 class DrumMachine extends React.Component {
 	
 	constructor(props) {
 		super(props);
 		this.state = {
-			lastClip: ""
+			clipName: ""
 		};
 	}
 
 	playSound(elem_id) {
 		document.getElementById(elem_id).play();
 		let clip;
-		for (let v of audioList) {
-			if (v.key === elem_id) {
-				clip = v.name;
+		for (let audio of audioList) {
+			if (audio.key === elem_id) {
+				clip = audio.name;
 			}
 		}
 		this.setState({
-			lastClip: clip
-		}, ()=>console.log("Just played: "+ this.state.lastClip))
+			clipName: clip
+		}, ()=>console.log("Just played: "+ this.state.clipName))
 	}
 
 	onKeyPress(e) {
@@ -111,9 +117,11 @@ class DrumMachine extends React.Component {
 		this.playSound(elem_id);	
 		// console.log("I clicked on " + elem_id);
 	}
-render() {
+
+	render() {
 		return (
 			<div id="drum-machine">
+				<Display clipName={this.state.clipName}/>
 				<Pads handleClick={(elem_id)=>this.handleClick(elem_id)}/>
 			</div>
 		);
