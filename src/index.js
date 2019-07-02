@@ -79,6 +79,15 @@ class DrumMachine extends React.Component {
 
 	playSound(elem_id) {
 		document.getElementById(elem_id).play();
+		let clip;
+		for (let v of audioList) {
+			if (v.key === elem_id) {
+				clip = v.name;
+			}
+		}
+		this.setState({
+			lastClip: clip
+		}, ()=>console.log("Just played: "+ this.state.lastClip))
 	}
 
 	onKeyPress(e) {
