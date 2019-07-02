@@ -78,6 +78,7 @@ class DrumMachine extends React.Component {
 	
 	constructor(props) {
 		super(props);
+		this.onKeyPress = this.onKeyPress.bind(this);
 		this.state = {
 			clipName: ""
 		};
