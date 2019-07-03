@@ -124,8 +124,10 @@ class DrumMachine extends React.Component {
 	render() {
 		return (
 			<div id="drum-machine">
-				<Display clipName={this.state.clipName}/>
-				<Pads handleClick={(elem_id)=>this.handleClick(elem_id)}/>
+				<div id="inner-container">
+					<Display clipName={this.state.clipName}/>
+					<Pads handleClick={(elem_id)=>this.handleClick(elem_id)}/>
+				</div>
 			</div>
 		);
 	}

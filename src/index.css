@@ -13,6 +13,12 @@ body {
 	justify-content: center;
 }
 
+#inner-container {
+	border-radius: 15px;
+	overflow: hidden;
+	box-shadow: 2px 2px 2px 2px black;
+}
+
 #display {
 	background-color: black;
 	color: white;
@@ -23,8 +29,6 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border-radius: 15px 15px 0px 0px;
-	box-shadow: 2px 2px 2px 2px black;
 }
 
 #inner-screen {
@@ -43,14 +47,11 @@ body {
 	padding-top: 10%;
 	padding-bottom: 25%;
 	background-color: gray;
-	/* margin: auto; */
 	display: grid;
 	grid-template-columns: repeat(3, 77px);
 	grid-template-rows: repeat(3, 75px);
 	justify-content: center;
 	align-items: center;
-	border-radius: 0px 0px 15px 15px;
-	box-shadow: 2px 2px 2px 2px black;
 }
 
 
