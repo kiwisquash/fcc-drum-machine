@@ -70,7 +70,9 @@ class Pads extends React.Component {
 
 const Display = (props) => (
 	<div id="display">
-		{props.clipName}
+		<div id="inner-screen">
+		<h1>{props.clipName}</h1>
+		</div>
 	</div>
 )
 
@@ -78,10 +80,10 @@ class DrumMachine extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.onKeyPress = this.onKeyPress.bind(this);
 		this.state = {
 			clipName: ""
 		};
+		this.onKeyPress = this.onKeyPress.bind(this);
 	}
 
 	playSound(elem_id) {
@@ -105,7 +107,7 @@ class DrumMachine extends React.Component {
 			console.log(pressed + " is not a valid key.");
 		}
 	}
-
+	
 	componentDidMount() {
 		document.addEventListener("keydown", this.onKeyPress);
 	}
