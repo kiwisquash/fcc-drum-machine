@@ -32,7 +32,7 @@ for (let clip of audioList) {
 }
 
 const Clip = (props) => {
-	return (<audio className="clip" src={props.audioObj.src} id={props.innertext} />);
+	return (<audio preload="auto" className="clip" src={props.audioObj.src} id={props.innertext} />);
 }
 
 const Pad = (props) => {
@@ -87,7 +87,9 @@ class DrumMachine extends React.Component {
 	}
 
 	playSound(elem_id) {
-		document.getElementById(elem_id).play();
+		const sound = document.getElementById(elem_id);
+		sound.currentTime = 0;
+		sound.play();
 		let clip;
 		for (let audio of audioList) {
 			if (audio.key === elem_id) {
